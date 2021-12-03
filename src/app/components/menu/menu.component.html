@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>Biblioteca</span>
+
+    <button mat-flat-button routerLink="author" color="primary">Autores</button>
+    <button mat-flat-button routerLink="book" color="primary">Libros</button>
+    <button mat-flat-button routerLink="library" color="primary">Búsqueda</button>
+
+    <span class="example-spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="logout">Cerrar sesión</button>
+    </mat-menu>
+</mat-toolbar>

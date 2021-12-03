@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.crud {
+    min-width: 1000px;
+    margin-top: 50px;
+}
+
+.list {
+    margin-top: 50px;
+}
+
+
+.buttons {
+    button:not(:last-child) {
+        margin-right: 20px;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" >
+        <h2>Inicio de sesión</h2>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="username">
+            <mat-icon matSuffix class="material-icons-two-tone">person</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix class="material-icons-two-tone">vpn_key</mat-icon>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
+    </form>
+</div>

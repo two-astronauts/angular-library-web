@@ -1,0 +1,100 @@
+<div class="crud">
+  <h2>Autores</h2>
+
+  <form [formGroup]="authorForm">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id">
+        <mat-icon matSuffix>fingerprint</mat-icon>
+        <mat-hint>Auto-generado</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Identificación</mat-label>
+        <input matInput formControlName="identification">
+        <mat-icon matSuffix>badge</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombres</mat-label>
+        <input matInput formControlName="name">
+        <mat-icon matSuffix>short_text</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="lastname">
+        <mat-icon matSuffix>short_text</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nacionalidad</mat-label>
+        <mat-select formControlName="nationality">
+          <mat-option *ngFor="let nationality of nationalities" [value]="nationality.id">
+            {{ nationality.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!authorForm.valid">Guardar</button>
+    <button mat-raised-button color="accent" (click)="authorForm.reset()">Cancelar</button>
+  </div>
+
+  
+  <div class="list">
+    <h3>Listado</h3>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <!-- Identification Column -->
+      <ng-container matColumnDef="identification">
+        <th mat-header-cell *matHeaderCellDef> Identificación </th>
+        <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombres </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <!-- Lastname Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+      </ng-container>
+      <!-- Nationality Column -->
+      <ng-container matColumnDef="nationality">
+          <th mat-header-cell *matHeaderCellDef> Nacionalidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.nationality.name}} </td>
+      </ng-container>
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="select(element)" aria-label="Example icon button with a home icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="delete(element)" aria-label="Example icon button with a home icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+
+

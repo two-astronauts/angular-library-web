@@ -1,0 +1,123 @@
+<div class="crud">
+  <h2>Libros</h2>
+
+  <form [formGroup]="bookForm">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id">
+        <mat-icon matSuffix>fingerprint</mat-icon>
+        <mat-hint>Auto-generado</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>ISBN</mat-label>
+        <input matInput formControlName="isbn">
+        <mat-icon matSuffix>qr_code_2</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+        <mat-icon matSuffix>short_text</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Editorial</mat-label>
+        <input matInput formControlName="editorial">
+        <mat-icon matSuffix>short_text</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="kind">
+          <mat-option *ngFor="let kind of kinds" [value]="kind.id">
+            {{ kind.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Año de publicación</mat-label>
+        <input matInput formControlName="year">
+        <mat-icon matSuffix>event</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Autor</mat-label>
+        <mat-select formControlName="author">
+          <mat-option *ngFor="let author of authors" [value]="author.id">
+            {{ author.name + ' ' + author.lastname }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!bookForm.valid">Guardar</button>
+    <button mat-raised-button color="accent" (click)="bookForm.reset()">Cancelar</button>
+  </div>
+
+  <div class="list">
+    <h3>Listado</h3>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <!-- Isbn Column -->
+      <ng-container matColumnDef="isbn">
+        <th mat-header-cell *matHeaderCellDef> ISBN </th>
+        <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <!-- Editorial Column -->
+      <ng-container matColumnDef="editorial">
+        <th mat-header-cell *matHeaderCellDef> Editorial </th>
+        <td mat-cell *matCellDef="let element"> {{element.editorial}} </td>
+      </ng-container>
+      <!-- Kind Column -->
+      <ng-container matColumnDef="kind">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let element"> {{element.kind.name}} </td>
+      </ng-container>
+      <!-- Year Column -->
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Año </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+      </ng-container>
+      <!-- Author Column -->
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Autor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.author.name + ' ' + element.author.lastname }} </td>
+      </ng-container>
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="select(element)" aria-label="Example icon button with a home icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="delete(element)" aria-label="Example icon button with a home icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

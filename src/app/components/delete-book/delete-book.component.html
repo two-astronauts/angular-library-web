@@ -1,0 +1,10 @@
+<h2 mat-dialog-title> {{ title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Al eliminar este libro no podrás recuperarlo.</h3>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="confirm()" cdkFocusInitial>Eliminar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
+
